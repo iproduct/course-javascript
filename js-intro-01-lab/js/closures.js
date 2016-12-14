@@ -1,22 +1,12 @@
-var counter = (function countWithClosure() { //IIFE - Module pattern
-  var count = 0; //private state
-  return { //public API
-    increment: function () {
-      return ++count;
-    },
-    decrement: function () {
-      return --count;
-    }
-  };
-})();
+// for (var i = 0; i < 10; i++) {
+//   (function(x) {
+//     var f = function () {
+//       console.log(x);
+//     };
+//     setTimeout(f, x * 1000);
+//   }) (i);
+// }
 
-
-console.log(counter.increment());
-console.log(counter.increment());
-console.log(counter.increment());
-console.log(counter.increment());
-console.log(counter.decrement());
-console.log(counter.decrement());
-console.log(counter.decrement());
-console.log(counter.decrement());
-       
+for (let i = 0; i < 10; i++) {
+  setTimeout(function() {console.log(i);}, i * 1000);
+}

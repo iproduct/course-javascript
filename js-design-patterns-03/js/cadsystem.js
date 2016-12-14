@@ -67,9 +67,9 @@ function start(ctx) {
     var r1_decorated =
         new AreaShapeDecorator(
              new ShadowShapeDecorator(
-                // new NamedShapeDecorator(
-                    r1//, "Rectangle 1", null, "15px Arial"
-                // )
+                 new NamedShapeDecorator(
+                    r1, "Rectangle 1", null, "15px Arial"
+                )
                 , 15, 15, 7, "brown"
              )
         );

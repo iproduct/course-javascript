@@ -13,8 +13,8 @@ function test() {
     var civic = new Car("Honda Civic", 2009, 20000);
     var mondeo = new Car("Ford Mondeo", 2010, 5000);
 
-    log(civic.toString());
-    log(mondeo.toString());
+    console.log(civic.toString());
+    console.log(mondeo.toString());
     
     //Singleton
     var SingletonTester = (function(){
@@ -39,7 +39,7 @@ function test() {
         var instance;
 
         //this is an emulation of static variables and methods
-        var _static = {
+        var static = {
             name: 'SingletonTester',
             //This is a method for getting an instance
 
@@ -51,20 +51,22 @@ function test() {
                 return instance;
             }
         };
-        return _static;
+        return static;
     })();
 
-    var singletonTest = SingletonTester.getInstance({
+    var singletonTest1 = SingletonTester.getInstance({
         pointX: 5
     });
-    log(singletonTest.toString()); // outputs 5 
+    console.log(singletonTest1.toString()); // outputs 5 
     var singletonTest2 = SingletonTester.getInstance({
         pointY: 12,
         pointX: 18
     });
+    console.log(singletonTest2.toString());
+    
     singletonTest2.pointY = 25;
-    log(singletonTest2.toString());
-    log(singletonTest.toString()); 
+    console.log(singletonTest2.toString());
+    console.log(singletonTest1.toString()); 
 
 
     //Module
@@ -75,18 +77,18 @@ function test() {
                 return counter++;
             },
             resetCounter: function() {
-                log('counter value prior to reset:' + counter);
+                console.log('counter value prior to reset:' + counter);
                 counter = 0;
             }
         };
     })();
 
     /*test*/
-    log(testModule.incrementCounter());
-    log(testModule.incrementCounter());
-    log(testModule.incrementCounter());
+    console.log(testModule.incrementCounter());
+    console.log(testModule.incrementCounter());
+    console.log(testModule.incrementCounter());
     testModule.resetCounter();
-    log(testModule.incrementCounter());
+    console.log(testModule.incrementCounter());
 
 
     //Mixin
@@ -100,10 +102,10 @@ function test() {
     var Mixin = function(){};
     Mixin.prototype = {
         driveForward: function(){
-            log('drive forward');
+            console.log('drive forward');
         },
         driveBackward: function(){
-            log('drive backward');
+            console.log('drive backward');
         }
     };
 
@@ -131,14 +133,16 @@ function test() {
     }
 
 
-    /* Augment the Car class to have the methods 'driveForward' and 'driveBackward'*/
-    augment(Car, Mixin);
+    
 
     /* Create a new Car */
     var vehicle = new Car({
         model:'Ford Escort', 
         colour:'blue'
     });
+
+/* Augment the Car class to have the methods 'driveForward' and 'driveBackward'*/
+    augment(Car, Mixin);
 
     /* Test to make sure we now have access to the methods*/
     vehicle.driveForward();

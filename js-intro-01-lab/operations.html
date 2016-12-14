@@ -25,9 +25,15 @@ function opAll(op) {
     return sum;
 } 
 
+var sumAll = opAll.bind(undefined, '+');
+var multAll = opAll.bind(undefined, '*');
+
+// function sumAll(op) { //function decalration
+//     return opAll(op);
+// }
 
 document.getElementById("demo").innerHTML =
-opAll('*', 1, 123, 500, 115, 44, 88);
+sumAll(1, 123, 500, 115, 44, 88);
 </script>
 
 </body>
